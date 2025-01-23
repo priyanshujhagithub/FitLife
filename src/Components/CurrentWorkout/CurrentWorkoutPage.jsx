@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ExerciseCard from "./Exercisecard";
 import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-function CurrentWorkoutDisplay(props) {
+function CurrentWorkoutPage(props) {
     const { addNewSet, currExercises } = useOutletContext();
     const navigate = useNavigate();
 
@@ -22,4 +22,4 @@ function CurrentWorkoutDisplay(props) {
     );
 }
 
-export default CurrentWorkoutDisplay;
+export default CurrentWorkoutPage;
