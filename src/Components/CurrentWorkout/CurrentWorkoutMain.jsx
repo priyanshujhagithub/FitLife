@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import styles from "./App.module.css";
-import ExerciseCard from "./Exercisecard";
-import NewExercise from "./Searchable";
-import exerciseList from "./Exercise";
 import { Outlet } from "react-router-dom";
 
-function App() {
+function CurrentWorkoutMain() {
     const [currExercises, handleExercises] = useState({ "Chest Press": [ {sno: "1", reps: "10", weight: "10"} ] });
     const [value, setValue] = useState("");
     function addNewSet(newSetDetails, exerciseName) {
@@ -40,4 +36,4 @@ function App() {
     );
 }
 
-export default App;
+export default CurrentWorkoutMain;
