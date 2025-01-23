@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import CurrentWorkoutDisplay from './CurrentWorkoutDisplay';
+import NewExercisePage from './NewExercisePage';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function Home() {
+    const navigate = useNavigate();
+
+    return (
+        <div>
+            <button onClick={() => navigate('/newSession')}>Start A Workout Session</button>
+        </div>
+    );
+}
+
 root.render(
-    <App/>
+    <BrowserRouter>
+        <Routes>
+            <Route index element={<Home />} />
+            <Route path="/newSession" element={<App />}>
+                <Route path="currentWorkout" element={<CurrentWorkoutDisplay/>}/>
+                <Route path="newExercise" element={<NewExercisePage />} />
+            </Route>
+        </Routes>
+    </BrowserRouter>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-

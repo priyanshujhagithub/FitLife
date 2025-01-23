@@ -3,6 +3,8 @@ import styles from "./App.module.css";
 import ExerciseCard from "./Exercisecard";
 import NewExercise from "./Searchable";
 import exerciseList from "./Exercise";
+import { Outlet } from "react-router-dom";
+
 function App() {
     const [currExercises, handleExercises] = useState({ "Chest Press": [ {sno: "1", reps: "10", weight: "10"} ] });
     const [value, setValue] = useState("");
@@ -28,31 +30,12 @@ function App() {
     }
     return (
         <div>
+        <h1>We will never show this page</h1>
 
+        <Outlet
+            context={{value:value,setValue:setValue,addNewExerciseCard:addNewExerciseCard,addNewSet:addNewSet,currExercises:currExercises}}
 
-
-
-
-            <NewExercise
-                options={exerciseList}
-                label="name"
-                id="id"
-                selectedVal={value}
-                handleChange={(val) => setValue(val)}
-                addNewExercise={addNewExerciseCard}
-            />
-
-            {Object.keys(currExercises).map((key) => {
-                return (<ExerciseCard
-                    exerciseName={key}
-                    addNewSet={addNewSet}
-                    sets={currExercises[key]}
-                />);
-            })}
-
-
-
-
+        />
         </div>
     );
 }
