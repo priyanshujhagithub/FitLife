@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
+import styles from "./HumanBody.module.css";
 
-
-function HumanBody() {
-    const [dataClickedId, setDataClickedId] = useState('');
-
-    const handlePartClicked = (event) => {
-        const clickedPart = event.target.id;
-        setDataClickedId(clickedPart);
-    };
+function HumanBody(props) {
+    useEffect(() => {
+        const updateFillColor = () => {
+            props.selected.forEach((id) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.style.fill = "green";
+                }
+            });
+        };
+        updateFillColor();
+    }, [props.selected]);
     return (
         <div className="human-body">
             <svg
-                onClick={handlePartClicked}
+                onClick={(key)=>{
+                    console.log(key.target.id);
+                }}
                 xmlns="http://www.w3.org/2000/svg"
                 width="259.22897"
                 height="350"
@@ -22,7 +29,7 @@ function HumanBody() {
                     d="m 11.671635,6.3585449 -0.0482,-2.59085 4.20648,-2.46806 4.42769,2.95361 -0.0405,1.94408 0.24197,-3.34467 -2.03129,-2.31103004 -2.84508,-0.51629 -2.20423,0.52915 -1.9363,2.63077004 z"
                     id="head" />
                 <path
-                    style={{ opacity: 1 }}
+                    style={{ opacity: 1}}
                     d="m 19.748825,6.7034949 0.0203,-2.20747 -3.96689,-2.7637 -3.74099,2.23559 -0.006,2.63528 -0.60741,0.0403 0.27408,1.82447 0.97635,0.33932 0.44244,2.1802901 1.82222,2.06556 2.03518,-0.0607 1.79223,-1.94408 0.35957,-2.2406601 0.97616,-0.33932 0.25159,-1.78416 z"
                     id="face" />
                 <path
@@ -195,11 +202,6 @@ function HumanBody() {
                     d="m 49.625175,14.629325 0.063,-2.62462 -0.71441,1.15181 -4.37994,1.49796 4.97857,8.36746 1.83043,5.08188 -0.21949,-13.55362 z"
                     id="clavicule-left" />
             </svg>
-            {dataClickedId && (
-                <div className="absolute top-12 left-12 bg-gray-200 p-2 rounded">
-                    Clicked Part: {dataClickedId}
-                </div>
-            )}
         </div>
     );
 }

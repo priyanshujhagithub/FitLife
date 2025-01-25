@@ -30,7 +30,7 @@ function NewExercise(props){
   }
   function selectOption(option){
     console.log(option.label)
-    props.addNewExercise(option[props.label]);
+    props.addNewExercise(option);
     setQuery('');
     props.handleChange(option[props.label]);
     setIsOpen((isOpen) => !isOpen);

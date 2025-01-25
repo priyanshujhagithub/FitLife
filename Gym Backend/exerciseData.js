@@ -37,7 +37,7 @@ let exerciseData=[
     {
       "id": 8,
       "name": "Calf Raises",
-      "muscleGrp": ["calf-left", "calf-right"]
+      "muscleGrp": ["calf-left", "calf-right","leg-left"]
     },
     {
       "id": 9,
