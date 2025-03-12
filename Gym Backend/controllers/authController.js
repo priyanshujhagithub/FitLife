@@ -4,6 +4,9 @@ import userModel from '../models/userModel.js';
 
 export const register=async(req,res)=>{
     const {name,email,password}=req.body;
+    console.log(name);
+    console.log(email);
+    console.log(password);
     if(!name || !email || !password){
         return res.json({success:false, message:'Missing Details'})
     }
@@ -32,13 +35,14 @@ export const register=async(req,res)=>{
         return res.json({success: true});
 
     } catch (error) {
-        res.json({success:false, message:'Missing Details'})
+        res.json({success:false, message:error})
     }
 }
 
 export const login = async (req,res) => {
     const {email, password} = req.body;
-
+    console.log(email);
+    console.log(password);
     if(!email || !password){
         return res.json({success: false, message: 'Email and Password are required'})
     }

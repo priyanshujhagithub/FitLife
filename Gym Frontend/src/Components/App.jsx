@@ -2,6 +2,8 @@ import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import CurrentWorkoutPage from './CurrentWorkout/CurrentWorkoutPage';
 import NewExercisePage from './CurrentWorkout/NewExercisePage';
 import CurrentWorkoutMain from './CurrentWorkout/CurrentWorkoutMain';
+import SignIn from './Login/hooks/sign-in';
+import { AuthProvider } from './Login/hooks/use-auth';
 function App() {
     function Home() {
         const navigate = useNavigate();
@@ -13,15 +15,19 @@ function App() {
         );
     }
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route index element={<Home />} />
-                <Route path="/newSession" element={<CurrentWorkoutMain />}>
-                    <Route path="currentWorkout" element={<CurrentWorkoutPage />} />
-                    <Route path="newExercise" element={<NewExercisePage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <AuthProvider>
+            <BrowserRouter>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/signin" element={<SignIn />} />
+                    <Route path="/newSession" element={<CurrentWorkoutMain />}>
+                        <Route path="currentWorkout" element={<CurrentWorkoutPage />} />
+                        <Route path="newExercise" element={<NewExercisePage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </AuthProvider>
+
     );
 }
 
