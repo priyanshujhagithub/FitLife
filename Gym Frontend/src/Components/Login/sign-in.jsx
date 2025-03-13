@@ -1,9 +1,9 @@
 import {useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./use-auth.jsx";
-import { Button } from "../components/button.jsx";
-import { Input } from '../components/input.jsx'
-import { Card, CardContent, CardHeader, CardTitle } from '../components/card.jsx'
+import { useAuth } from "./hooks/use-auth.jsx";
+import { Button } from "./components/button.jsx";
+import { Input } from './components/input.jsx'
+import { Card, CardContent, CardHeader, CardTitle } from './components/card.jsx'
 import {z,ZodError} from 'zod';
 
 
@@ -27,7 +27,7 @@ export default function SignIn(){
             setIsSubmitting(true);
             const validatedData=signInSchema.parse(data);
             await signIn(validatedData.email,validatedData.password);
-            navigate('/app');
+            navigate('/');
         }catch(error){
             if(error instanceof ZodError){
                 const formattedErrors={};
@@ -38,7 +38,7 @@ export default function SignIn(){
                 });
                 setErrors(formattedErrors);
             }else{
-                setErrors({submit:'Failed to sign in.Please try again'});
+                setErrors({submit:error.message});
             }
         }finally{
             setIsSubmitting(false);

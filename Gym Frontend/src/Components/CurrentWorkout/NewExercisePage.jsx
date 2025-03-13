@@ -15,7 +15,7 @@ function NewExercisePage(props) {
         async function fetchData(){
             setLoading(true);
             try{
-                const response=await axios.get("http://localhost:5000/");
+                const response=await axios.get("http://localhost:3001/");
                 setData(response.data);
             }catch(error){
                 console.log(error);
