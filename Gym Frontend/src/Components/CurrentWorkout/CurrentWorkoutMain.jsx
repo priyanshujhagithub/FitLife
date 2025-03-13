@@ -10,7 +10,7 @@ function CurrentWorkoutMain() {
             data:currExercises
         }
         async function makePostRequest(){
-            await axios.post("http://localhost:5000/addNewExercise",userData);
+            await axios.post("http://localhost:3001/addNewExercise",userData);
         }
         makePostRequest();
     }
