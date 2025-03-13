@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from "react";
+import { createContext, useState, useEffect, useContext, use } from "react";
 import axios from "axios";
 
 const AuthContext = createContext(undefined);
@@ -9,12 +9,14 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         checkAuth();
     }, []);
+
+
     const checkAuth = async () => {
         try {
-            const response = await axios.post('/auth/me', {
-                withCredential: true,
+            const response = await axios.post('http://localhost:3001/auth/me',{}, {
+                withCredentials: true,
             });
-            setUser(response.data);
+            setUser(response.data.user);
         } catch (e) {
             console.log("Unable to check the auth status");
             setUser(null);
@@ -23,56 +25,55 @@ export function AuthProvider({ children }) {
         }
     };
     const signIn = async (email, password) => {
-        try {
-            const response = await axios.post('/auth/login',
-                {
-                    "email": email,
-                    "password": password
-                },
-                { withCredentials: true }
-            );
-            setUser(response.data);
-        } catch (error){
-            throw new Error(error||'Failed to sign in');
+        const response = await axios.post('http://localhost:3001/auth/login',
+            {
+                "email": email,
+                "password": password
+            },
+            { withCredentials: true }
+        );
+        if (!response.data.success ) {
+            const error = await response.data.message;
+            throw new Error(error || 'Failed to sign in')
         }
+        setUser(true);
+        
     }
 
-    const signUp = async (email, password,name) => {
-        try {
-            const response = await axios.post('/auth/register',
-                {
-                    "name": name,
-                    "email": email,
-                    "password": password
-                },
-                { withCredentials: true }
-            );
-            setUser(response.data);
-        } catch (error){
-            throw new Error(error||'Failed to sign up');
+    const signUp = async (email, password, name) => {
+        const response = await axios.post('http://localhost:3001/auth/register',
+            {
+                "name": name,
+                "email": email,
+                "password": password
+            },
+            { withCredentials: true }
+        );
+        if (!response.data.success ) {
+            const error = await response.data.message;
+            throw new Error(error || 'Failed to sign up')
         }
+
+        setUser(true);
+
     }
     const signOut = async () => {
-        try {
-            const response = await axios.post('/auth/logout',
-                { withCredentials: true }
-            );
-            setUser(null);
-        } catch (error){
-            throw new Error(error||'Failed to sign out');
-        }
+        const response = await axios.post('http://localhost:3001/auth/logout',
+            { withCredentials: true }
+        );
+        setUser(null);
     }
 
     return (
-        <AuthContext.Provider value={{user,signIn,signOut,signUp,isLoading}}>
+        <AuthContext.Provider value={{ user, signIn, signOut, signUp, isLoading }}>
             {children}
         </AuthContext.Provider>
     );
 }
 
-export function useAuth(){
-    const context=useContext(AuthContext);
-    if(!context){
+export function useAuth() {
+    const context = useContext(AuthContext);
+    if (!context) {
         throw new Error('UseAuth must bw used within an authProvider');
     }
     return context;
