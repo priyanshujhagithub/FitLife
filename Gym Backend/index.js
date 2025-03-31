@@ -25,7 +25,7 @@ app.get('/',(req,res)=>{
 app.use('/auth', authRouter);
 
 app.post('/addNewExercise',(req,res)=>{
-    console.log(req.body);
+    console.log(req.body.data);
 });
 
 app.listen(port,()=>{

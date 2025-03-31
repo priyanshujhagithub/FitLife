@@ -4,7 +4,7 @@ import HumanBody from "./HumanBody";
 import { useOutletContext } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 function CurrentWorkoutPage(props) {
-    const { addNewSet, currExercises, selectedMuscleGroup, endAndPostWorkoutSession } = useOutletContext();
+    const { addNewSet, currExercises, selectedMuscleGroup, EndAndPostWorkoutSession } = useOutletContext();
     const navigate = useNavigate();
 
     return (
@@ -22,7 +22,7 @@ function CurrentWorkoutPage(props) {
             <HumanBody
                 selected={selectedMuscleGroup || []}
             />
-            <button onClick={endAndPostWorkoutSession}> End Workout Session </button>
+            <button onClick={EndAndPostWorkoutSession}> End Workout Session </button>
         </div>
     );
 }

@@ -4,9 +4,6 @@ import userModel from '../models/userModel.js';
 
 export const register = async (req, res) => {
     const { name, email, password } = req.body;
-    console.log(name);
-    console.log(email);
-    console.log(password);
     if (!name || !email || !password) {
         return res.json({ success: false, message: 'Missing Details' })
     }
@@ -26,13 +23,14 @@ export const register = async (req, res) => {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
         res.cookie('token', token, {
+            id:user._id,
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
-        return res.json({ success: true });
+        return res.json({ success: true ,id:user._id});
 
     } catch (error) {
         res.json({ success: false, message: error })
@@ -41,8 +39,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
-    console.log(email);
-    console.log(password);
     if (!email || !password) {
         return res.json({ success: false, message: 'Email and Password are required' })
     }
@@ -66,7 +62,7 @@ export const login = async (req, res) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
-        return res.json({ success: true });
+        return res.json({ success: true ,id:user._id});
 
     }
     catch (error) {
@@ -106,7 +102,7 @@ export const authCheck = async (req, res) => {
             res.clearCookie('token');
             return res.json({ user: null });
         }
-        res.json({ user: decoded });
+        res.json({ user: decoded.id });
     } catch (error) {
         console.error('Get current user error:', error)
         res.status(500).json({ error: 'Failed to get current user' })

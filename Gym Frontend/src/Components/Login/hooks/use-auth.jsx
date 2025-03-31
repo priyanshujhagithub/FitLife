@@ -36,8 +36,7 @@ export function AuthProvider({ children }) {
             const error = await response.data.message;
             throw new Error(error || 'Failed to sign in')
         }
-        setUser(true);
-        
+        setUser(response.data.id);
     }
 
     const signUp = async (email, password, name) => {
@@ -54,7 +53,7 @@ export function AuthProvider({ children }) {
             throw new Error(error || 'Failed to sign up')
         }
 
-        setUser(true);
+        setUser(response.data.id);
 
     }
     const signOut = async () => {

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Outlet } from "react-router-dom";
 import axios from 'axios';
+import { useAuth } from "../Login/hooks/use-auth";
 function CurrentWorkoutMain() {
     const [currExercises, handleExercises] = useState({ "Chest Press": [{ sno: "1", reps: "10", weight: "10" }] });
     const [value, setValue] = useState("");
     const [selectedMuscleGroup, setSelectedMuscleGroup] = useState([]);
-    function endAndPostWorkoutSession() {
+    const {user}=useAuth();
+    function EndAndPostWorkoutSession() {
         const userData={
+            user:user,
             data:currExercises
         }
         async function makePostRequest(){
@@ -39,7 +42,7 @@ function CurrentWorkoutMain() {
         <div>
 
             <Outlet
-                context={{ value: value, setValue: setValue, addNewExerciseCard: addNewExerciseCard, addNewSet: addNewSet, currExercises: currExercises, selectedMuscleGroup: selectedMuscleGroup, endAndPostWorkoutSession: endAndPostWorkoutSession }}
+                context={{ value: value, setValue: setValue, addNewExerciseCard: addNewExerciseCard, addNewSet: addNewSet, currExercises: currExercises, selectedMuscleGroup: selectedMuscleGroup, EndAndPostWorkoutSession: EndAndPostWorkoutSession }}
 
             />
         </div>
