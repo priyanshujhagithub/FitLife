@@ -7,10 +7,14 @@ import connectDB from './config/mongodb.js';
 import authRouter from  './routes/authRoutes.js'
 
 const app=express();
-const port=process.env.port||5000;
+const port=process.env.port||3001;
 connectDB();
 
-app.use(cors({credentials:true}));
+const corsConfig = {
+    credentials: true,
+    origin: true,
+};
+app.use(cors(corsConfig));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -18,10 +22,10 @@ app.get('/',(req,res)=>{
     res.json(exerciseData)
 });
 //API Endpoints
-app.use('/api/auth', authRouter);
+app.use('/auth', authRouter);
 
 app.post('/addNewExercise',(req,res)=>{
-    console.log(req.body);
+    console.log(req.body.data);
 });
 
 app.listen(port,()=>{
