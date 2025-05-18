@@ -33,8 +33,17 @@ const userSchema = new mongoose.Schema({
     resetOtpExpireAt:{
         type:Number,
         default:0
-    },
-})
+    }
+},{
+    toJSON:{virtuals:true},
+    toObject:{virtuals:true}
+});
+
+userSchema.virtual('exercises',{
+    ref:'Exercise',
+    localField:'_id',
+    foreignField:'user'
+});
 
 const userModel=mongoose.models.user || mongoose.model('user',userSchema);
 
