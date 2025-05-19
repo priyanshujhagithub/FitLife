@@ -1,5 +1,5 @@
 import express from 'express';
-import { addExercise,getMyExercises } from '../controllers/exerciseController';
+import { addExercise,getMyExercises } from '../controllers/exerciseController.js';
 import {protect} from '../middleware/authMiddleware.js';
 
 const router = express.Router();
