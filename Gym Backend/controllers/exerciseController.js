@@ -2,6 +2,7 @@ import Exercise from '../models/exerciseModel.js';
 
 export const addExercise = async (req, res) => {
     try {
+        console.log("I was hit");
         const { name, muscleGroup, sets, reps, weight, duration, date } = req.body;
         const userId = req.user.id;
 

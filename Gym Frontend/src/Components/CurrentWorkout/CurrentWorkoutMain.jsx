@@ -7,13 +7,18 @@ function CurrentWorkoutMain() {
     const [value, setValue] = useState("");
     const [selectedMuscleGroup, setSelectedMuscleGroup] = useState([]);
     const {user}=useAuth();
-    function EndAndPostWorkoutSession() {
-        const userData={
+    async function EndAndPostWorkoutSession() {
+        
+        async function makePostRequest(){
+            try{
+                const userData={
             user:user,
             data:currExercises
         }
-        async function makePostRequest(){
-            await axios.post("http://localhost:3001/addNewExercise",userData);
+                await axios.post("http://localhost:3001/api/exercises/add",userData);
+            }catch(e){
+                console.log(e);
+            }
         }
         makePostRequest();
     }

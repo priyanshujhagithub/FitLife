@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
             });
             setUser(response.data.user);
         } catch (e) {
-            console.log("Unable to check the auth status");
+            console.log(e);
             setUser(null);
         } finally {
             setIsLoading(false);
