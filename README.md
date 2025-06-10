@@ -78,22 +78,22 @@ $ git clone https://github.com/yourusername/fitlife.git
 $ cd fitlife
 
 # Install backend dependencies
-$ cd "Gym Backend"
+$ cd "server"
 $ npm install
 
 # Install frontend dependencies
-$ cd "../Gym Frontend"
+$ cd "../client"
 $ npm install
 ```
 
 ### Running the App
 ```bash
 # Start the backend
-$ cd "Gym Backend"
+$ cd "server"
 $ npm start
 
 # In a new terminal, start the frontend
-$ cd "../Gym Frontend"
+$ cd "../client"
 $ npm start
 ```
 
@@ -115,7 +115,7 @@ $ npm start
 ## 📁 Folder Structure
 ```
 GYM/
-├── Gym Backend/
+├── server/
 │   ├── config/
 │   ├── controllers/
 │   ├── middleware/
@@ -123,7 +123,7 @@ GYM/
 │   ├── routes/
 │   ├── index.js
 │   └── ...
-├── Gym Frontend/
+├── client/
 │   ├── public/
 │   ├── src/
 │   │   ├── assets/
@@ -134,6 +134,8 @@ GYM/
 │   │   └── utils/
 │   ├── package.json
 │   └── ...
+├── assets/
+│   └── banner.png
 └── README.md
 ```
 
