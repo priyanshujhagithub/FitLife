@@ -1,34 +1,36 @@
-import Exercise from '../models/exerciseModel.js';
+import Session from '../models/SessionModel.js';
 
 export const addExercise = async (req, res) => {
     try {
-        console.log("I was hit");
-        const { name, muscleGroup, sets, reps, weight, duration, date } = req.body;
         const userId = req.user.id;
-
-        const ex = await Exercise.create({
-            user: userId, name, muscleGroup, sets, reps, weight, duration, date
+        const { sessionConfig, data } = req.body;
+        if (!sessionConfig || !data) {
+            return res.status(400).json({ success: false, message: 'Missing sessionConfig or data' });
+        }
+        const session = await Session.create({
+            user: userId,
+            sessionConfig,
+            data
         });
-
-        res.status(201).json({ success: true, exercise: ex });
+        res.status(201).json({ success: true, session });
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: "Failed to add exercise",
+            message: "Failed to add session",
             error: err.message
         });
     }
 };
 
-export const getMyExercises = async (req, res, next) => {
+export const getMyExercises = async (req, res) => {
     try {
         const userId = req.user.id;
-        const list = await Exercise.find({ user: userId }).sort('-date');
-            res.json({ success: true, exercises: list });
+        const list = await Session.find({ user: userId }).sort('-date');
+        res.json({ success: true, exercises: list });
     } catch (err) {
         res.status(500).json({
             success: false,
-            message: "Failed to fetch exercises",
+            message: "Failed to fetch sessions",
             error: err.message
         });
     }
