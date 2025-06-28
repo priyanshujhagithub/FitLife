@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useNavigate, Outlet } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../hooks/useAuth';
+import { API_ENDPOINTS } from '../config/api.js';
 import NewSessionSetup from './NewSessionSetup';
 
 function CurrentWorkoutMain() {
@@ -19,7 +20,7 @@ function CurrentWorkoutMain() {
                 data:currExercises,
                 sessionConfig: sessionConfig
             }
-            await axios.post("http://localhost:3001/api/exercises/add",userData,{withCredentials:true});
+            await axios.post(API_ENDPOINTS.EXERCISES.ADD,userData,{withCredentials:true});
             navigate('/');
         }catch(e){
             console.log(e);

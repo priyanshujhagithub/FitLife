@@ -17,11 +17,12 @@
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [Running the App](#running-the-app)
-6. [API Endpoints](#api-endpoints)
-7. [Folder Structure](#folder-structure)
-8. [Contributing](#contributing)
-9. [License](#license)
-10. [Contact](#contact)
+6. [Deployment](#deployment)
+7. [API Endpoints](#api-endpoints)
+8. [Folder Structure](#folder-structure)
+9. [Contributing](#contributing)
+10. [License](#license)
+11. [Contact](#contact)
 
 ---
 
@@ -86,16 +87,89 @@ $ cd "../client"
 $ npm install
 ```
 
+### Environment Setup
+
+#### Backend (.env file in server directory)
+```bash
+# Copy the example file
+cp server/env.example server/.env
+
+# Edit with your values
+PORT=3001
+NODE_ENV=development
+MONGODB_URL=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/
+JWT_SECRET=your_super_secret_jwt_key_here
+CLIENT_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:3000
+```
+
+#### Frontend (.env file in client directory)
+```bash
+# Copy the example file
+cp client/env.example client/.env
+
+# Edit with your values
+REACT_APP_API_URL=http://localhost:3001
+```
+
 ### Running the App
 ```bash
 # Start the backend
 $ cd "server"
-$ npm start
+$ npm run dev
 
 # In a new terminal, start the frontend
 $ cd "../client"
 $ npm start
 ```
+
+---
+
+## 🚀 Deployment
+
+### Backend Deployment (Render)
+
+1. **Prepare your backend:**
+   ```bash
+   cd server
+   npm install
+   ```
+
+2. **Deploy to Render:**
+   - Go to [Render Dashboard](https://dashboard.render.com)
+   - Create a new Web Service
+   - Connect your GitHub repository
+   - Set Root Directory to `server`
+   - Set Build Command to `npm install`
+   - Set Start Command to `npm start`
+
+3. **Set environment variables in Render:**
+   - `NODE_ENV=production`
+   - `MONGODB_URL` (your MongoDB Atlas connection string)
+   - `JWT_SECRET` (your secret key)
+   - `CLIENT_URL` (your Vercel frontend URL)
+   - `FRONTEND_URL` (your Vercel frontend URL)
+
+### Frontend Deployment (Vercel)
+
+1. **Prepare your frontend:**
+   ```bash
+   cd client
+   npm install
+   ```
+
+2. **Deploy to Vercel:**
+   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
+   - Import your GitHub repository
+   - Set Root Directory to `client`
+   - Set Framework Preset to `Create React App`
+
+3. **Set environment variables in Vercel:**
+   - `REACT_APP_API_URL` (your Render backend URL)
+
+### Complete Deployment Guide
+
+For detailed step-by-step instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
 
 ---
 
@@ -109,6 +183,7 @@ $ npm start
 | POST   | `/api/exercises/add`            | Add a new workout session          |
 | GET    | `/api/exercises/my`             | Get all sessions for the user      |
 | GET    | `/`                             | Get the list of available exercises|
+| GET    | `/health`                       | Health check endpoint              |
 
 ---
 
@@ -130,9 +205,7 @@ GYM/
 │   │   ├── components/
 │   │   ├── hooks/
 │   │   ├── pages/
-│   │   ├── styles/
-│   │   └── utils/
-│   ├── package.json
+│   │   └── ...
 │   └── ...
 ├── assets/
 │   └── banner.png
@@ -142,25 +215,26 @@ GYM/
 ---
 
 ## 🤝 Contributing
-We welcome contributions! To get started:
+
 1. Fork the repository
-2. Create a new branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ---
 
 ## 📄 License
-This project is licensed under the [MIT License](LICENSE).
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📬 Contact
+## 📞 Contact
 
-- **Project Maintainers:**
-  - [Samriddh Diwan](mailto:samriddh.diwan.ug22@nsut.ac.in) ([GitHub](https://github.com/SamriddhDiwan))
-  - [Priyanshu Jha](mailto:priyanshu.jha.ug22@nsut.ac.in) ([GitHub](https://github.com/priyanshujhagithub))
+- **Author:** Your Name
+- **Email:** your.email@example.com
+- **Project Link:** [https://github.com/yourusername/fitlife](https://github.com/yourusername/fitlife)
 
 ---
 

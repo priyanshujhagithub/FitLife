@@ -7,6 +7,7 @@ import { Button } from "../components/common/button"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card"
 import { Calendar, Clock, Target, TrendingUp, Play, LogOut, ArrowLeft } from "lucide-react"
 import axios from "axios"
+import { API_ENDPOINTS } from "../config/api.js"
 
 export default function Home() {
   const navigate = useNavigate()
@@ -22,7 +23,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchSessions() {
       try {
-        const response = await axios.get("http://localhost:3001/api/exercises/my", {
+        const response = await axios.get(API_ENDPOINTS.EXERCISES.MY, {
           withCredentials: true,
         })
         setSessions(response.data.exercises)
