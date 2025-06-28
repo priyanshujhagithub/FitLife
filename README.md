@@ -100,7 +100,6 @@ NODE_ENV=development
 MONGODB_URL=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/
 JWT_SECRET=your_super_secret_jwt_key_here
 CLIENT_URL=http://localhost:3000
-FRONTEND_URL=http://localhost:3000
 ```
 
 #### Frontend (.env file in client directory)
@@ -147,8 +146,7 @@ $ npm start
    - `NODE_ENV=production`
    - `MONGODB_URL` (your MongoDB Atlas connection string)
    - `JWT_SECRET` (your secret key)
-   - `CLIENT_URL` (your Vercel frontend URL)
-   - `FRONTEND_URL` (your Vercel frontend URL)
+   - `CLIENT_URL` (your Vercel frontend URL) - **Optional**: if not set, allows all origins
 
 ### Frontend Deployment (Vercel)
 

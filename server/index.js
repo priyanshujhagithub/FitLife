@@ -12,26 +12,10 @@ const app=express();
 const port=process.env.PORT||3001;
 connectDB();
 
-// CORS configuration for production
-const allowedOrigins = [
-  'http://localhost:3000',
-  'http://localhost:3001',
-  process.env.CLIENT_URL,
-  process.env.FRONTEND_URL
-].filter(Boolean);
-
+// Simplified CORS configuration for easier deployment
 const corsConfig = {
     credentials: true,
-    origin: function (origin, callback) {
-        // Allow requests with no origin (like mobile apps or curl requests)
-        if (!origin) return callback(null, true);
-        
-        if (allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: process.env.CLIENT_URL || true, // Allow specific origin or all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };

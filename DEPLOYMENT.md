@@ -27,9 +27,8 @@ MONGODB_URL=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/
 # JWT Configuration
 JWT_SECRET=your_super_secret_jwt_key_here_make_it_long_and_random
 
-# Client URLs (for CORS)
+# Client URL (for CORS) - Optional: if not set, allows all origins
 CLIENT_URL=https://your-vercel-frontend-domain.vercel.app
-FRONTEND_URL=https://your-vercel-frontend-domain.vercel.app
 ```
 
 ### Frontend Environment Variables (Vercel)
@@ -66,8 +65,9 @@ REACT_APP_API_URL=https://your-render-backend-domain.onrender.com
    MONGODB_URL=your_mongodb_atlas_connection_string
    JWT_SECRET=your_super_secret_jwt_key_here
    CLIENT_URL=https://your-vercel-frontend-domain.vercel.app
-   FRONTEND_URL=https://your-vercel-frontend-domain.vercel.app
    ```
+   
+   **Note**: If you don't set `CLIENT_URL`, CORS will allow all origins (less secure but easier for development).
 
 5. **Deploy**
    - Click "Create Web Service"
@@ -101,16 +101,15 @@ REACT_APP_API_URL=https://your-render-backend-domain.onrender.com
    - Vercel will automatically build and deploy your frontend
    - Note down your frontend URL (e.g., `https://fitlife-frontend.vercel.app`)
 
-### Step 3: Update CORS Settings
+### Step 3: Update CORS Settings (Optional)
 
-After both deployments are complete:
+After both deployments are complete, you can optionally update the CORS settings for better security:
 
 1. **Update Backend CORS**
    - Go back to your Render backend service
-   - Update the environment variables with your actual Vercel frontend URL:
+   - Update the `CLIENT_URL` environment variable with your actual Vercel frontend URL:
    ```
    CLIENT_URL=https://your-actual-vercel-domain.vercel.app
-   FRONTEND_URL=https://your-actual-vercel-domain.vercel.app
    ```
    - Redeploy the backend service
 
@@ -136,8 +135,8 @@ After both deployments are complete:
 ## 🚨 Common Issues & Solutions
 
 ### CORS Errors
-- Ensure `CLIENT_URL` and `FRONTEND_URL` in Render match your Vercel domain exactly
-- Check that your Vercel domain is in the allowed origins
+- If you set `CLIENT_URL`, ensure it matches your Vercel domain exactly
+- If you don't set `CLIENT_URL`, CORS will allow all origins automatically
 - Make sure both URLs use HTTPS
 
 ### Database Connection Issues
