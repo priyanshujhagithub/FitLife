@@ -8,24 +8,6 @@
 
 ---
 
-## 🚀 Table of Contents
-1. [About](#about)
-2. [Features](#features)
-3. [Tech Stack](#tech-stack)
-4. [Demo Screenshots](#demo-screenshots)
-5. [Getting Started](#getting-started)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Running the App](#running-the-app)
-6. [Deployment](#deployment)
-7. [API Endpoints](#api-endpoints)
-8. [Folder Structure](#folder-structure)
-9. [Contributing](#contributing)
-10. [License](#license)
-11. [Contact](#contact)
-
----
-
 ## 🌟 About
 FitLife is a modern, full-stack workout app that helps you:
 - 🔐 Securely register & log in
@@ -50,16 +32,18 @@ FitLife is a modern, full-stack workout app that helps you:
 - **Frontend:** React, React Router, Axios, CSS Modules
 - **Backend:** Node.js, Express, Mongoose (MongoDB)
 - **Auth:** JSON Web Tokens (JWT), bcryptjs, cookie-parser
-- **Styling:** Custom CSS Modules, modern color palette
-- **Testing & Docs:** Postman, Swagger (optional)
+- **Testing & Docs:** Postman
 
 ---
 
 ## 📸 Demo Screenshots
 
 <div align="center">
-  <img src="assets/dashboard1.png" alt="Dashboard View" width="45%" />
-  <img src="assets/mobile.png" alt="Mobile View" width="30%" />
+  <img src="assets/d1.png" alt="Dashboard View" width="45%" />
+  <img src="assets/d2.png" alt="Mobile View" width="45%" />
+  <img src="assets/d3.png" alt="Mobile View" width="45%" />
+  <img src="assets/d4.png" alt="Mobile View" width="45%" />
+  <img src="assets/d5.png" alt="Mobile View" width="45%" />
 </div>
 
 ---
@@ -122,55 +106,6 @@ $ cd "../client"
 $ npm start
 ```
 
----
-
-## 🚀 Deployment
-
-### Backend Deployment (Render)
-
-1. **Prepare your backend:**
-   ```bash
-   cd server
-   npm install
-   ```
-
-2. **Deploy to Render:**
-   - Go to [Render Dashboard](https://dashboard.render.com)
-   - Create a new Web Service
-   - Connect your GitHub repository
-   - Set Root Directory to `server`
-   - Set Build Command to `npm install`
-   - Set Start Command to `npm start`
-
-3. **Set environment variables in Render:**
-   - `NODE_ENV=production`
-   - `MONGODB_URL` (your MongoDB Atlas connection string)
-   - `JWT_SECRET` (your secret key)
-   - `CLIENT_URL` (your Vercel frontend URL) - **Optional**: if not set, allows all origins
-
-### Frontend Deployment (Vercel)
-
-1. **Prepare your frontend:**
-   ```bash
-   cd client
-   npm install
-   ```
-
-2. **Deploy to Vercel:**
-   - Go to [Vercel Dashboard](https://vercel.com/dashboard)
-   - Import your GitHub repository
-   - Set Root Directory to `client`
-   - Set Framework Preset to `Create React App`
-
-3. **Set environment variables in Vercel:**
-   - `REACT_APP_API_URL` (your Render backend URL)
-
-### Complete Deployment Guide
-
-For detailed step-by-step instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
-
----
-
 ## 🔗 API Endpoints
 | Method | Endpoint                        | Description                        |
 |--------|----------------------------------|------------------------------------|
@@ -210,28 +145,9 @@ GYM/
 └── README.md
 ```
 
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 📞 Contact
 
-- **Author:** Your Name
-- **Email:** your.email@example.com
+- **Author:** Samriddh Diwan & Priyanshu Jha
 - **Project Link:** [https://github.com/yourusername/fitlife](https://github.com/yourusername/fitlife)
 
 ---
