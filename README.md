@@ -39,13 +39,14 @@ FitLife is a modern, full-stack workout app that helps you:
 ## 📸 Demo Screenshots
 
 <div align="center">
-  <img src="assets/d1.png" alt="View" width="45%" />
-  <img src="assets/d2.png" alt="View" width="45%" />
-  <img src="assets/d3.png" alt="View" width="45%" />
-  <img src="assets/d4.png" alt="View" width="45%" />
-  <img src="assets/d5.png" alt="View" width="45%" />
-  <img src="assets/d6.png" alt="View" width="45%" />
-  <img src="assets/d7.png" alt="View" width="45%" />
+  <img src="assets/d1.png" alt="View" width="50%" />
+  <img src="assets/d2.png" alt="View" width="50%" />
+  <img src="assets/d3.png" alt="View" width="50%" />
+  <img src="assets/d4.png" alt="View" width="50%" />
+  <img src="assets/d5.png" alt="View" width="50%" />
+  <img src="assets/d6.png" alt="View" width="50%" />
+  <img src="assets/d7.png" alt="View" width="50%" />
+  <img src="assets/d8.png" alt="View" width="50%" />
 </div>
 
 ---
