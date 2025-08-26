@@ -52,20 +52,15 @@ export function AuthProvider({ children }) {
         throw new Error(error)
       }
 
-      // Set user immediately after successful login
       setUser(response.data.id)
       return response.data
     } catch (error) {
-      // Handle different types of errors
       if (error.response) {
-        // Server responded with error status
         const message = error.response.data?.message || "Invalid credentials"
         throw new Error(message)
       } else if (error.request) {
-        // Network error
         throw new Error("Network error. Please check your connection.")
       } else {
-        // Other errors
         throw new Error(error.message || "Sign in failed")
       }
     }
@@ -88,20 +83,15 @@ export function AuthProvider({ children }) {
         throw new Error(error)
       }
 
-      // Set user immediately after successful registration
       setUser(response.data.id)
       return response.data
     } catch (error) {
-      // Handle different types of errors
       if (error.response) {
-        // Server responded with error status
         const message = error.response.data?.message || "Registration failed"
         throw new Error(message)
       } else if (error.request) {
-        // Network error
         throw new Error("Network error. Please check your connection.")
       } else {
-        // Other errors
         throw new Error(error.message || "Sign up failed")
       }
     }

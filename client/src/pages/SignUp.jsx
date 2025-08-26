@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { useAuth } from "../hooks/useAuth"
 import { Input } from "../components/common/input"
@@ -37,7 +35,6 @@ export default function SignUp() {
       setIsSubmitting(true)
       const validatedData = signUpSchema.parse(data)
       await signUp(validatedData.email, validatedData.password, validatedData.name)
-      // Redirect to dashboard after successful sign up
       navigate("/dashboard", { replace: true })
     } catch (error) {
       if (error instanceof ZodError) {
@@ -49,7 +46,6 @@ export default function SignUp() {
         })
         setErrors(formattedErrors)
       } else {
-        // Provide more specific error messages
         const errorMessage = error.message || "Sign up failed. Please try again."
         setErrors({ submit: errorMessage })
       }
@@ -66,7 +62,6 @@ export default function SignUp() {
     }
   }
 
-  // Password strength indicators
   const passwordChecks = [
     { label: "At least 8 characters", test: (pwd) => pwd.length >= 8 },
     { label: "One uppercase letter", test: (pwd) => /[A-Z]/.test(pwd) },

@@ -34,7 +34,6 @@ function NewExercise(props) {
     props.handleChange(option[props.label])
     setIsOpen((isOpen) => !isOpen)
 
-    // Call the onSelect callback if provided
     if (props.onSelect) {
       props.onSelect(option)
     }

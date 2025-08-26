@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
@@ -75,7 +73,7 @@ export default function Home() {
       <nav className="bg-gray-900/50 backdrop-blur-sm border-b border-gray-800 relative">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex justify-between items-center h-16 relative">
-            {/* Left Side - Back to Home */}
+            {/* Left side-back to home */}
             <div>
               <Button
                 onClick={() => navigate("/")}
@@ -86,7 +84,7 @@ export default function Home() {
                 Back to Home
               </Button>
             </div>
-            {/* Right Side - Sign Out */}
+            {/* Right side-sign out */}
             <div>
               <Button
                 onClick={handleSignOut}
@@ -102,7 +100,7 @@ export default function Home() {
       </nav>
 
       <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Hero Section */}
+        {/* Hero section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-fade-in">
             Welcome Back, <span className="text-red-500">Champion!</span>
@@ -119,7 +117,7 @@ export default function Home() {
           </Button>
         </div>
 
-        {/* Metrics Panel */}
+        {/* Metrics panel */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-white mb-8 text-center">Your Fitness Journey</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -139,7 +137,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Previous Sessions */}
+        {/* Previous sessions */}
         <div>
           <h2 className="text-3xl font-bold text-white mb-8 text-center">Your Workout History</h2>
 

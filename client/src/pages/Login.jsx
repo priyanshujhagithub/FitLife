@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth"
@@ -25,7 +23,6 @@ export default function SignIn() {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (user) {
       const from = location.state?.from?.pathname || "/dashboard"
@@ -40,7 +37,6 @@ export default function SignIn() {
       const validatedData = signInSchema.parse(data)
       await signIn(validatedData.email, validatedData.password)
 
-      // Navigate to the intended destination or dashboard
       const from = location.state?.from?.pathname || "/dashboard"
       navigate(from, { replace: true })
     } catch (error) {
@@ -53,7 +49,6 @@ export default function SignIn() {
         })
         setErrors(formattedErrors)
       } else {
-        // Provide more specific error messages
         const errorMessage = error.message || "Sign in failed. Please check your credentials and try again."
         setErrors({ submit: errorMessage })
       }
@@ -70,7 +65,6 @@ export default function SignIn() {
     }
   }
 
-  // Don't render the form if user is already authenticated
   if (user) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">

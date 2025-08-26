@@ -107,28 +107,3 @@ export const checkAuth=async (req,res) => {
         res.status(500).json({ error: 'Failed to get current user' })
     }
 }
-// isko bhi middleware mai daal diya hai
-
-// export const authCheck = async (req, res) => {
-//     try {
-//         const token = req.cookies.token;
-//         if (!token) {
-//             res.clearCookie('token');
-//             return res.json({ user: null })
-
-//         }
-//         let decoded;
-//         try {
-//             decoded = jwt.verify(token, process.env.JWT_SECRET);
-//         } catch (error) {
-//             console.log("JWT verification failed:", err.message);
-//             res.clearCookie('token');
-//             return res.json({ user: null });
-//         }
-//         res.json({ user: decoded.id });
-//     } catch (error) {
-//         console.error('Get current user error:', error)
-//         res.status(500).json({ error: 'Failed to get current user' })
-//     }
-
-// }

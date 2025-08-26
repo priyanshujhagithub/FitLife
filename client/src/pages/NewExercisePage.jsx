@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import NewExercise from "../components/workout/Searchable"
 import { useOutletContext } from "react-router-dom"
@@ -29,9 +27,7 @@ function NewExercisePage() {
     fetchData()
   }, [])
 
-  // Add this function to handle exercise selection and redirection
   const handleExerciseSelect = (selectedExercise) => {
-    // Add a small delay to ensure the exercise is added to the workout
     setTimeout(() => {
       navigate("/newSession/currentWorkout")
     }, 100)

@@ -1,4 +1,3 @@
-"use client"
 import ExerciseCard from "../components/workout/Exercisecard"
 import HumanBody from "../components/workout/HumanBody"
 import { useOutletContext } from "react-router-dom"
