@@ -105,7 +105,7 @@ export default function SignUp() {
             >
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium text-gray-500">
-                  Full Name (Optional)
+                  Full Name
                 </label>
                 <Input
                   id="name"
