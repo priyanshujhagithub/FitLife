@@ -8,4 +8,13 @@ export default defineConfig({
       '@': '/src',
     },
   },
+  build: {
+    rollupOptions: {
+      external: [],
+    },
+    target: 'es2015',
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
 })
