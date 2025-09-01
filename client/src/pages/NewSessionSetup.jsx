@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { Button } from "../components/common/button"
-import { Input } from "../components/common/input"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card"
+import { useNavigate } from "react-router"
+import { Button } from "../components/common/button.jsx"
+import { Input } from "../components/common/input.jsx"
+import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"
 import { Play, ArrowLeft, Target, Clock, Repeat, Activity } from "lucide-react"
 
 function NewSessionSetup({ setSessionConfig }) {

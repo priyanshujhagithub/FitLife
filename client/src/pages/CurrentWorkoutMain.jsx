@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import {useNavigate, Outlet } from "react-router-dom";
+import {useNavigate, Outlet } from "react-router";
 import axios from 'axios';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth.jsx';
 import { API_ENDPOINTS } from '../config/api.js';
-import NewSessionSetup from './NewSessionSetup';
+import NewSessionSetup from './NewSessionSetup.jsx';
 
 function CurrentWorkoutMain() {
     const navigate=useNavigate();

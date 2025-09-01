@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
 export const API_ENDPOINTS = {
   AUTH: {
@@ -10,6 +10,7 @@ export const API_ENDPOINTS = {
   EXERCISES: {
     ADD: `${API_BASE_URL}/api/exercises/add`,
     MY: `${API_BASE_URL}/api/exercises/my`,
+    DELETE: (sessionId) => `${API_BASE_URL}/api/exercises/${sessionId}`,
   },
 };
 

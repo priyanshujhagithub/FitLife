@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { useAuth } from "../hooks/useAuth"
-import { Button } from "../components/common/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card"
-import { Calendar, Clock, Target, TrendingUp, Play, LogOut, ArrowLeft } from "lucide-react"
+import { useNavigate } from "react-router"
+import { useAuth } from "../hooks/useAuth.jsx"
+import { Button } from "../components/common/button.jsx"
+import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"
+import { Calendar, Clock, Target, TrendingUp, Play, LogOut, ArrowLeft, Trash2, AlertTriangle, CheckCircle } from "lucide-react"
 import axios from "axios"
 import { API_ENDPOINTS } from "../config/api.js"
 
@@ -12,27 +12,72 @@ export default function Home() {
   const { signOut, user } = useAuth()
   const [sessions, setSessions] = useState([])
   const [loading, setLoading] = useState(true)
+  const [deletingSession, setDeletingSession] = useState(null)
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(null)
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false)
 
   const handleSignOut = async () => {
     await signOut()
     navigate("/", { replace: true })
   }
 
-  useEffect(() => {
-    async function fetchSessions() {
-      try {
-        const response = await axios.get(API_ENDPOINTS.EXERCISES.MY, {
-          withCredentials: true,
-        })
-        setSessions(response.data.exercises)
-      } catch (error) {
-        console.error("Failed to fetch sessions", error)
-      } finally {
-        setLoading(false)
-      }
+  const fetchSessions = async () => {
+    try {
+      const response = await axios.get(API_ENDPOINTS.EXERCISES.MY, {
+        withCredentials: true,
+      })
+      setSessions(response.data.exercises)
+    } catch (error) {
+      console.error("Failed to fetch sessions", error)
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
     if (user) fetchSessions()
   }, [user])
+
+  const handleDeleteSession = async (sessionId) => {
+    try {
+      setDeletingSession(sessionId)
+      
+      const response = await axios.delete(API_ENDPOINTS.EXERCISES.DELETE(sessionId), {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
+      
+      setSessions(prev => prev.filter(session => session._id !== sessionId))
+      setShowDeleteConfirm(null)
+      setShowSuccessMessage(true)
+      setTimeout(() => setShowSuccessMessage(false), 3000)
+    } catch (error) {
+      console.error("Failed to delete session", error)
+      
+      let errorMessage = "Failed to delete session. Please try again."
+      if (error.response?.status === 404) {
+        errorMessage = "Session not found. It may have already been deleted."
+      } else if (error.response?.status === 401) {
+        errorMessage = "Authentication failed. Please log in again."
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message
+      }
+      
+      alert(errorMessage)
+    } finally {
+      setDeletingSession(null)
+    }
+  }
+
+  const confirmDelete = (sessionId) => {
+    setShowDeleteConfirm(sessionId)
+  }
+
+  const cancelDelete = () => {
+    setShowDeleteConfirm(null)
+  }
 
   const metrics = [
     {
@@ -99,6 +144,16 @@ export default function Home() {
         </div>
       </nav>
 
+      {/* Success Message */}
+      {showSuccessMessage && (
+        <div className="fixed top-4 right-4 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-fade-in">
+          <div className="flex items-center">
+            <CheckCircle className="h-5 w-5 mr-2" />
+            <span>Session deleted successfully!</span>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-6xl mx-auto px-4 py-12">
         {/* Hero section */}
         <div className="text-center mb-12">
@@ -163,11 +218,20 @@ export default function Home() {
               {sessions.map((session, idx) => (
                 <Card
                   key={idx}
-                  className="bg-gray-900/90 backdrop-blur-sm border-gray-700 hover:border-red-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slide-up"
+                  className="bg-gray-900/90 backdrop-blur-sm border-gray-700 hover:border-red-400 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 animate-slide-up relative"
                   style={{ animationDelay: `${idx * 100}ms` }}
                 >
+                  {/* Delete Button */}
+                  <button
+                    onClick={() => confirmDelete(session._id)}
+                    className="absolute top-3 right-3 p-2 text-gray-400 hover:text-red-500 transition-colors duration-200 rounded-full hover:bg-red-500/10"
+                    title="Delete session"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </button>
+
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-lg text-red-500">
+                    <CardTitle className="text-lg text-red-500 pr-8">
                       {session.sessionConfig?.sessionName || "Workout Session"}
                     </CardTitle>
                     <p className="text-sm text-gray-500">
@@ -219,6 +283,41 @@ export default function Home() {
                       </div>
                     )}
                   </CardContent>
+
+                  {/* Delete Confirmation Dialog */}
+                  {showDeleteConfirm === session._id && (
+                    <div className="absolute inset-0 bg-black/80 backdrop-blur-sm rounded-lg flex items-center justify-center z-10">
+                      <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 max-w-sm mx-4">
+                        <div className="flex items-center mb-4">
+                          <AlertTriangle className="h-6 w-6 text-red-500 mr-3" />
+                          <h3 className="text-lg font-semibold text-white">Delete Session</h3>
+                        </div>
+                        <p className="text-gray-300 mb-6">
+                          Are you sure you want to delete this workout session? This action cannot be undone.
+                        </p>
+                        <div className="flex gap-3">
+                          <Button
+                            onClick={() => handleDeleteSession(session._id)}
+                            disabled={deletingSession === session._id}
+                            className="bg-red-600 hover:bg-red-700 text-white flex-1"
+                          >
+                            {deletingSession === session._id ? (
+                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mx-auto"></div>
+                            ) : (
+                              "Delete"
+                            )}
+                          </Button>
+                          <Button
+                            onClick={cancelDelete}
+                            variant="outline"
+                            className="border-gray-600 text-gray-300 hover:bg-gray-700 flex-1"
+                          >
+                            Cancel
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </Card>
               ))}
             </div>

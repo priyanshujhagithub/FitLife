@@ -1,5 +1,4 @@
 import React, { useState,useEffect } from "react";
-import styles from '../../styles/HumanBody.module.css';
 
 function HumanBody(props) {
     useEffect(() => {

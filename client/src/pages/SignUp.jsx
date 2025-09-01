@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { useAuth } from "../hooks/useAuth"
-import { Input } from "../components/common/input"
-import { Button } from "../components/common/button"
-import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card"
+import { useAuth } from "../hooks/useAuth.jsx"
+import { Input } from "../components/common/input.jsx"
+import { Button } from "../components/common/button.jsx"
+import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"
 import { UserPlus, CheckCircle, ArrowLeft } from "lucide-react"
 import { z, ZodError } from "zod"
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router"
 
 const signUpSchema = z.object({
   email: z.string().email("Invalid email address"),

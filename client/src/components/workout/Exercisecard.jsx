@@ -1,9 +1,7 @@
-"use client"
-
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "../common/card"
-import { Button } from "../common/button"
-import { Input } from "../common/input"
+import { Card, CardContent, CardHeader, CardTitle } from "../common/card.jsx"
+import { Button } from "../common/button.jsx"
+import { Input } from "../common/input.jsx"
 import { Plus, X, Target, Weight } from "lucide-react"
 
 function ExerciseCard(props) {

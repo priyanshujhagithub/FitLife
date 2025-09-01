@@ -1,158 +1,79 @@
-# 💪 FitLife — Your Ultimate Workout Companion
+# GYM Workout Tracker
 
-![FitLife Banner](assets/banner.png)
+A comprehensive workout tracking application built with React, Node.js, and MongoDB.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)]()
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)]()
+## Features
 
----
+### Core Functionality
+- **User Authentication**: Secure login/signup system
+- **Workout Sessions**: Create and manage workout sessions
+- **Exercise Tracking**: Track sets, reps, and weights for each exercise
+- **Progress Analytics**: View workout history and progress metrics
+- **Session Management**: Complete CRUD operations for workout sessions
 
-## 🌟 About
-FitLife is a modern, full-stack workout app that helps you:
-- 🔐 Securely register & log in
-- 📊 Track exercises, sets, reps, and session duration
-- 📅 View a history of all your workout sessions
-- 🏋️‍♂️ Organize your fitness journey with a beautiful, responsive UI
+### Session Management (CRUD Operations)
+- **Create**: Start new workout sessions with custom configurations
+- **Read**: View all previous workout sessions with detailed information
+- **Update**: Modify session details during active workouts
+- **Delete**: Remove unwanted workout sessions with confirmation dialog
 
----
+## Delete Feature
 
-## ✨ Features
-- **User Authentication** (Register, Login, Logout, JWT protection)
-- **Workout Session Management** (Add, List, View sessions)
-- **Session Details** (Track sets, reps, duration, and type)
-- **Progress Dashboard** (View all previous sessions)
-- **Responsive Design** (Mobile & Desktop ready)
-- **Modern Color Palette** (Dark backgrounds, bold accents)
-- **Error Handling** (User-friendly messages)
+The delete functionality allows users to remove workout sessions from their history:
 
----
+### Features
+- **Confirmation Dialog**: Prevents accidental deletions
+- **Loading States**: Visual feedback during deletion process
+- **Success Notifications**: Confirms successful deletion
+- **Real-time Updates**: Session list updates immediately
+- **Error Handling**: User-friendly error messages
 
-## 🛠️ Tech Stack
-- **Frontend:** React, React Router, Axios, CSS Modules
-- **Backend:** Node.js, Express, Mongoose (MongoDB)
-- **Auth:** JSON Web Tokens (JWT), bcryptjs, cookie-parser
-- **Testing & Docs:** Postman
+### User Experience
+- Click the trash icon on any session card
+- Confirm deletion in the popup dialog
+- Session is removed from the dashboard
+- Success notification appears briefly
 
----
+## Getting Started
 
-## 📸 Demo Screenshots
+1. **Install Dependencies**
+   ```bash
+   # Server
+   cd server && npm install
+   
+   # Client
+   cd client && npm install
+   ```
 
-<div align="center">
-  <img src="assets/d1.png" alt="View" width="75%" />
-  <img src="assets/d2.png" alt="View" width="75%" />
-  <img src="assets/d3.png" alt="View" width="75%" />
-  <img src="assets/d4.png" alt="View" width="75%" />
-  <img src="assets/d5.png" alt="View" width="75%" />
-  <img src="assets/d6.png" alt="View" width="75%" />
-  <img src="assets/d7.png" alt="View" width="75%" />
-  <img src="assets/d8.png" alt="View" width="75%" />
-</div>
+2. **Start Development Servers**
+   ```bash
+   # Server (Port 3001)
+   cd server && npm run dev
+   
+   # Client (Port 5173)
+   cd client && npm run dev
+   ```
 
----
+3. **Access the Application**
+   - Frontend: http://localhost:5173
+   - Backend API: http://localhost:3001
 
-## 🏁 Getting Started
+## API Endpoints
 
-### Prerequisites
-- **Node.js** ≥ v14
-- **npm** or **yarn**
-- **MongoDB Atlas** account & cluster
-- **.env** file with your MongoDB URI and JWT secret
+### Authentication
+- `POST /auth/register` - User registration
+- `POST /auth/login` - User login
+- `POST /auth/logout` - User logout
+- `GET /auth/me` - Get current user
 
-### Installation
-```bash
-# Clone the repo
-$ git clone https://github.com/yourusername/fitlife.git
-$ cd fitlife
+### Workout Sessions
+- `POST /api/exercises/add` - Create new session
+- `GET /api/exercises/my` - Get user's sessions
+- `DELETE /api/exercises/:sessionId` - Delete specific session
 
-# Install backend dependencies
-$ cd "server"
-$ npm install
+## Technologies Used
 
-# Install frontend dependencies
-$ cd "../client"
-$ npm install
-```
-
-### Environment Setup
-
-#### Backend (.env file in server directory)
-```bash
-# Copy the example file
-cp server/env.example server/.env
-
-# Edit with your values
-PORT=3001
-NODE_ENV=development
-MONGODB_URL=mongodb+srv://your_username:your_password@your_cluster.mongodb.net/
-JWT_SECRET=your_super_secret_jwt_key_here
-CLIENT_URL=http://localhost:3000
-```
-
-#### Frontend (.env file in client directory)
-```bash
-# Copy the example file
-cp client/env.example client/.env
-
-# Edit with your values
-REACT_APP_API_URL=http://localhost:3001
-```
-
-### Running the App
-```bash
-# Start the backend
-$ cd "server"
-$ npm run dev
-
-# In a new terminal, start the frontend
-$ cd "../client"
-$ npm start
-```
-
-## 🔗 API Endpoints
-| Method | Endpoint                        | Description                        |
-|--------|----------------------------------|------------------------------------|
-| POST   | `/auth/register`                | Register a new user                |
-| POST   | `/auth/login`                   | Login and receive JWT cookie       |
-| POST   | `/auth/logout`                  | Logout (clear cookie)              |
-| POST   | `/auth/me`                      | Check authentication status        |
-| POST   | `/api/exercises/add`            | Add a new workout session          |
-| GET    | `/api/exercises/my`             | Get all sessions for the user      |
-| GET    | `/`                             | Get the list of available exercises|
-| GET    | `/health`                       | Health check endpoint              |
-
----
-
-## 📁 Folder Structure
-```
-GYM/
-├── server/
-│   ├── config/
-│   ├── controllers/
-│   ├── middleware/
-│   ├── models/
-│   ├── routes/
-│   ├── index.js
-│   └── ...
-├── client/
-│   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── hooks/
-│   │   ├── pages/
-│   │   └── ...
-│   └── ...
-├── assets/
-│   └── banner.png
-└── README.md
-```
-
-## 📞 Contact
-
-- **Author:** Samriddh Diwan & Priyanshu Jha
-- **Project Link:** [https://github.com/yourusername/fitlife](https://github.com/yourusername/fitlife)
-
----
-
-> Made with ❤️ for fitness enthusiasts everywhere!
+- **Frontend**: React, Vite, Tailwind CSS, Lucide React Icons
+- **Backend**: Node.js, Express.js, MongoDB, Mongoose
+- **Authentication**: JWT tokens with HTTP-only cookies
+- **Styling**: Tailwind CSS with custom animations

@@ -1,13 +1,13 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
-import CurrentWorkoutPage from "./pages/CurrentWorkoutPage"
-import NewExercisePage from "./pages/NewExercisePage"
-import CurrentWorkoutMain from "./pages/CurrentWorkoutMain"
-import SignIn from "./pages/Login"
-import { AuthProvider } from "./hooks/useAuth"
-import { ProtectedRoute } from "./components/common/protected-route"
-import SignUp from "./pages/SignUp"
-import Home from "./pages/Home"
-import LandingPage from "./pages/LandingPage"
+import { BrowserRouter, Route, Routes } from "react-router"
+import CurrentWorkoutPage from "./pages/CurrentWorkoutPage.jsx"
+import NewExercisePage from "./pages/NewExercisePage.jsx"
+import CurrentWorkoutMain from "./pages/CurrentWorkoutMain.jsx"
+import SignIn from "./pages/Login.jsx"
+import { AuthProvider } from "./hooks/useAuth.jsx"
+import { ProtectedRoute } from "./components/common/protected-route.jsx"
+import SignUp from "./pages/SignUp.jsx"
+import Home from "./pages/Home.jsx"
+import LandingPage from "./pages/LandingPage.jsx"
 
 function App() {
   return (
