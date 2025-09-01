@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate, useLocation } from "react-router"
+import { useNavigate, useLocation } from "react-router-dom"
 import { useAuth } from "../hooks/useAuth.jsx"
 import { Input } from "../components/common/input.jsx"
 import { Button } from "../components/common/button.jsx"

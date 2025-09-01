@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {useNavigate, Outlet } from "react-router";
+import {useNavigate, Outlet } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../hooks/useAuth.jsx';
 import { API_ENDPOINTS } from '../config/api.js';

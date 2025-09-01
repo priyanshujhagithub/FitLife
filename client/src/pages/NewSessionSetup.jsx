@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 import { Button } from "../components/common/button.jsx"
 import { Input } from "../components/common/input.jsx"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"

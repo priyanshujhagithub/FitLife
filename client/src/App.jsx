@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
 import CurrentWorkoutPage from "./pages/CurrentWorkoutPage.jsx"
 import NewExercisePage from "./pages/NewExercisePage.jsx"
 import CurrentWorkoutMain from "./pages/CurrentWorkoutMain.jsx"

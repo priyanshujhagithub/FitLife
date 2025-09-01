@@ -1,6 +1,6 @@
 import ExerciseCard from "../components/workout/Exercisecard.jsx"
 import HumanBody from "../components/workout/HumanBody.jsx"
-import { useOutletContext,useNavigate } from "react-router"
+import { useOutletContext,useNavigate } from "react-router-dom"
 import { Button } from "../components/common/button.jsx"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"
 import { Plus, StopCircle, Target, Clock, Repeat, Activity, Zap, ArrowLeft } from "lucide-react"

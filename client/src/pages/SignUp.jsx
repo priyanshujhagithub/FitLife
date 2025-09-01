@@ -5,7 +5,7 @@ import { Button } from "../components/common/button.jsx"
 import { Card, CardContent, CardHeader, CardTitle } from "../components/common/card.jsx"
 import { UserPlus, CheckCircle, ArrowLeft } from "lucide-react"
 import { z, ZodError } from "zod"
-import { useNavigate } from "react-router"
+import { useNavigate } from "react-router-dom"
 
 const signUpSchema = z.object({
   email: z.string().email("Invalid email address"),
