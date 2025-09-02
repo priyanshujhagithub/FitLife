@@ -13,7 +13,7 @@ connectDB();
 
 const corsConfig = {
     credentials: true,
-    origin: process.env.CLIENT_URL || true,
+    origin: 'https://fitlifepj.netlify.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 };
