@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "../components/common/c
 import { Button } from "../components/common/button.jsx"
 import { ArrowLeft, Dumbbell, Search, Target, TrendingUp, Activity } from "lucide-react"
 import axios from "axios"
+import { API_ENDPOINTS } from "../config/api.js"
 
 function NewExercisePage() {
   const { value, setValue, addNewExerciseCard } = useOutletContext()
@@ -17,7 +18,9 @@ function NewExercisePage() {
     async function fetchData() {
       setLoading(true)
       try {
-        const response = await axios.get("http://localhost:3001/")
+        const response = await axios.get(API_ENDPOINTS.EXERCISES.GET,{
+          withCredentials:true,
+        })
         setData(response.data)
       } catch (error) {
         console.log(error)
