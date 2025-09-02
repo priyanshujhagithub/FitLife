@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://fitlife-wygr.onrender.com';
+const API_BASE_URL ='https://fitlife-wygr.onrender.com';
 
 export const API_ENDPOINTS = {
   AUTH: {
