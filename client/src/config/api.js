@@ -10,7 +10,7 @@ export const API_ENDPOINTS = {
   EXERCISES: {
     ADD: `${API_BASE_URL}/api/exercises/add`,
     MY: `${API_BASE_URL}/api/exercises/my`,
-    GET: `${API_BASE_URL}/`,
+    GET: `${API_BASE_URL}/list`,
     DELETE: (sessionId) => `${API_BASE_URL}/api/exercises/${sessionId}`,
   },
 };

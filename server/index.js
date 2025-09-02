@@ -22,7 +22,7 @@ app.use(cors(corsConfig));
 app.use(cookieParser());
 app.use(express.json());
 
-app.get('/',(req,res)=>{
+app.get('/list',(req,res)=>{
     res.json(exerciseData)
 });
 
