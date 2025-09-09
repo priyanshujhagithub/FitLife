@@ -21,7 +21,7 @@ function CurrentWorkoutMain() {
                 sessionConfig: sessionConfig
             }
             await axios.post(API_ENDPOINTS.EXERCISES.ADD,userData,{withCredentials:true});
-            navigate('/');
+            navigate('/dashboard');
         }catch(e){
             console.log(e);
         }
