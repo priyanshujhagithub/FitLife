@@ -1,4 +1,6 @@
-const API_BASE_URL ='https://fitlife-wygr.onrender.com' || 'https://localhost:3001';
+// const API_BASE_URL ='https://fitlife-wygr.onrender.com' || 'https://localhost:3001';
+
+const API_BASE_URL ='http://localhost:3001';
 
 export const API_ENDPOINTS = {
   AUTH: {
